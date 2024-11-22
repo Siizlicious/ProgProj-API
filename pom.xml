@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>gmail-proj</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+    </properties>
+    
+    <dependencies>
+        <!-- Google API Client (client principale per interagire con le API di Google) -->
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.34.1</version>
+        </dependency>
+    
+        <!-- Google OAuth2 Client (autorizza l'accesso all'account Gmail dell'utente.) -->
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+            <version>1.34.1</version>
+        </dependency>
+    
+        <!-- Google API Services Gmail (consente di interagire con le funzionalità di Gmail, come la lettura delle email) -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-gmail</artifactId>
+            <version>v1-rev110-1.25.0</version>
+        </dependency>
+    
+        <!-- Google Auth Library (autenticazione con OAuth2 e accesso ai servizi Google) -->
+        <dependency>
+            <groupId>com.google.auth</groupId>
+            <artifactId>google-auth-library-oauth2-http</artifactId>
+            <version>0.27.0</version>
+        </dependency>
+
+        <!-- Gson library (viene usata per leggere e scrivere oggetti JSON, che è il formato di comunicazione utilizzato dalle API di Google) -->
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-gson</artifactId>
+            <version>1.41.8</version>
+        </dependency>
+
+        <!-- Jackson JSON Library (viene usata per leggere e scrivere oggetti JSON, che è il formato di comunicazione utilizzato dalle API di Google) 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.0</version>
+        </dependency> -->
+    </dependencies> 
+
+    <!-- Questa sezione configura un plugin Maven per eseguire la classe principale del progetto -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.example.GmailApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Questa sezione definisce i repository in cui Maven cercherà le dipendenze -->
+    <repositories>
+        <repository>
+            <id>central</id>   
+            <url>https://repo.maven.apache.org/maven2</url>     <!-- default repository -->
+        </repository>
+        <repository>
+            <id>google-repo</id>
+            <url>https://maven.google.com</url>     <!-- repository di Google per le library delle sue API -->
+        </repository>
+    </repositories>
+
+</project>
